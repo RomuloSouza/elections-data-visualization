@@ -1,5 +1,9 @@
 import csv
-import json
+
+FIELD_NAMES = ['cpf', 'nomeUrna', 'sexo', 'nomeCandidato', 'dtNascimento',
+               'descricaoCargo', 'descricaoSituacao', 'sigla', 'nomePartido',
+               'ano', 'unidadeEleitoral', 'unidadeFederativa',
+               'descricaoResultado', 'turno']
 
 
 def parse_candidate(row):
@@ -40,12 +44,15 @@ def validade_candidate(candidate):
     return True
 
 
-def read_csv(filename):
+if __name__ == '__main__':
     counter = 0
-    with open(filename, mode='r') as csvfile:
+    with open('candidatura.csv', mode='r') as csvfile:
         readCSV = csv.DictReader(csvfile)
 
         with open('new_candidates.csv', mode='w') as new_csv_file:
+            writer = csv.DictWriter(new_csv_file, fieldnames=FIELD_NAMES)
+            writer.writeheader()
+
             for row in readCSV:
                 if counter == 0:
                     print(f'Column names = {", ".join(row)}')
@@ -53,13 +60,7 @@ def read_csv(filename):
                 else:
                     candidate = parse_candidate(row)
                     if validade_candidate(candidate):
+                        writer.writerow(candidate)
                         counter += 1
 
-                        if counter <= 100:
-                            print(json.dumps(candidate, indent=2))
-
     print('Total of valid rows = ', counter)
-
-
-if __name__ == '__main__':
-    read_csv('candidatura.csv')
