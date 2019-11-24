@@ -1,13 +1,15 @@
 import csv
 
-FIELD_NAMES = ['cpf', 'nomeUrna', 'sexo', 'nomeCandidato', 'dtNascimento',
-               'descricaoCargo', 'descricaoSituacao', 'sigla', 'nomePartido',
-               'ano', 'unidadeEleitoral', 'unidadeFederativa',
+FIELD_NAMES = ['numeroSequencial', 'cpf', 'nomeUrna', 'sexo', 'nomeCandidato',
+               'dtNascimento', 'descricaoCargo', 'descricaoSituacao', 'sigla',
+               'nomePartido', 'ano', 'unidadeEleitoral', 'unidadeFederativa',
                'descricaoResultado', 'turno']
 
 
 def parse_candidate(row):
     candidate = dict()
+
+    candidate['numeroSequencial'] = row['numero_sequencial']
     candidate['cpf'] = row['cpf']
     candidate['nomeUrna'] = row['nome_urna']
     candidate['sexo'] = row['descricao_genero']
@@ -35,6 +37,8 @@ def validade_candidate(candidate):
                        'unidadeFederativa', 'descricaoResultado', 'turno']
 
     if int(candidate['cpf']) <= 0:
+        return False
+    elif int(candidate['numeroSequencial']) <= 0:
         return False
     else:
         for i in existing_fields:
