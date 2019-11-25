@@ -1,19 +1,23 @@
+###################################################################
+
+NAME_IN_CSV (NAME_IN_DATABASE)
+
 ######################### candidatura.csv #########################
-cpf (cpf)   ######## NOT NULL
+cpf (cpf)                       ######## NOT NULL
 nome_urna (nomeUrna)
 descricao_genero (sexo)
-nome (nomeCandidato)    ######## NOT NULL
+nome (nomeCandidato)            ######## NOT NULL
 data_nascimento (dtNascimento)
 
 descricao_cargo (descricaoCargo) # TODO alterar todas 4 descricoes no DER e no DL   ######## NOT NULL
-descricao_situacao_candidatura (descricaoSituacao)  ######## NOT NULL
+descricao_situacao_candidatura (descricaoSituacao)                                  ######## NOT NULL
 
 PARTIDO
-sigla_partido (sigla)   ######## NOT NULL
+sigla_partido (sigla)           ######## NOT NULL
 nome_partido (nomePartido)
 
 CANDIDATURA
-ano_eleicao (ano)   ######## NOT NULL
+ano_eleicao (ano)               ######## NOT NULL
 descricao_ue (unidadeEleitoral) ######## NOT NULL
 sigla_uf (unidadeFederativa)    ######## NOT NULL
 
@@ -31,5 +35,7 @@ TIPOPATRIMONIO
 descricao_tipo (descricaoTipoPatrimonio)    ######## NOT NULL
 
 PATRIMONIO
-valor (valor)   ######## NOT NULL
-detalhe (detalhe)   ######## NOT NULL
+valor (valor)                           ######## NOT NULL
+detalhe (detalhe)                       ######## NOT NULL
+ano_eleicao (ano)                       ######## NOT NULL
+numero_sequencial (numeroSequencial)    ######## NOT NULL
