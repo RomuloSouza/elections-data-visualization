@@ -65,7 +65,7 @@ CREATE TABLE PATRIMONIO (
     valor FLOAT NOT NULL,
     detalhe VARCHAR(300),
     idTipoPatrimonio INT NOT NULL,
-    ano DATE,
+    ano DATE NOT NULL,
     cpf VARCHAR(15) NOT NULL,
 
     CONSTRAINT PATRIMONIO_PK PRIMARY KEY (idPatrimonio),

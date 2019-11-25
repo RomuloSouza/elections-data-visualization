@@ -31,7 +31,7 @@ def parse_candidate(row):
     return candidate
 
 
-def validade_candidate(candidate):
+def validate_candidate(candidate):
     existing_fields = ['nomeCandidato', 'descricaoCargo', 'descricaoSituacao',
                        'sigla', 'ano', 'unidadeEleitoral',
                        'unidadeFederativa', 'descricaoResultado', 'turno']
@@ -63,7 +63,7 @@ if __name__ == '__main__':
                     counter += 1
                 else:
                     candidate = parse_candidate(row)
-                    if validade_candidate(candidate):
+                    if validate_candidate(candidate):
                         writer.writerow(candidate)
                         counter += 1
 

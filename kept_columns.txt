@@ -1,3 +1,4 @@
+######################### candidatura.csv #########################
 cpf (cpf)   ######## NOT NULL
 nome_urna (nomeUrna)
 descricao_genero (sexo)
@@ -21,3 +22,14 @@ descricao_totalizacao_turno (descricaoResultado)    ######## NOT NULL
 
 ELEICAO
 numero_turno (turno)    ######## NOT NULL
+
+
+numero_sequencial (numeroSequencial)    ######## NOT NULL
+
+######################### bem-declarado.csv #########################
+TIPOPATRIMONIO
+descricao_tipo (descricaoTipoPatrimonio)    ######## NOT NULL
+
+PATRIMONIO
+valor (valor)   ######## NOT NULL
+detalhe (detalhe)   ######## NOT NULL
