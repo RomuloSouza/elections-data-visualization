@@ -38,6 +38,8 @@ def validate_candidate(candidate):
 
     if int(candidate['cpf']) <= 0:
         return False
+    elif int(candidate['ano']) != 2000:
+        return False
     elif int(candidate['numeroSequencial']) <= 0:
         return False
     else:
@@ -53,7 +55,7 @@ if __name__ == '__main__':
     with open('candidatura.csv', mode='r') as csvfile:
         readCSV = csv.DictReader(csvfile)
 
-        with open('new_candidates.csv', mode='w') as new_csv_file:
+        with open('new_candidates2.csv', mode='w') as new_csv_file:
             writer = csv.DictWriter(new_csv_file, fieldnames=FIELD_NAMES)
             writer.writeheader()
 
