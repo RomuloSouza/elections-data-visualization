@@ -1,6 +1,6 @@
 import pandas as pd
 
-MAX_CANDIDATES = 150000
+MAX_CANDIDATES = 20000
 
 INSERT_CANDIDATE = """
 INSERT INTO CANDIDATO (cpf, nomeUrna, sexo, nomeCandidato, dtNascimento)
@@ -38,7 +38,7 @@ def add_lines_to_file(lines):
 
 
 if __name__ == '__main__':
-    filename = 'new_candidates2.csv'
+    filename = 'new_candidates.csv'
 
     data = pd.read_csv(filename, parse_dates=['dtNascimento'])
     counter = 0
