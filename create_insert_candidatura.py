@@ -1,6 +1,6 @@
 import pandas as pd
 
-INSERT_CANDIDATE = """
+INSERT_CANDIDATURA = """
 INSERT INTO CANDIDATURA (cpf, ano, unidadeEleitoral, unidadeFederativa, idCargo, idSituacao, sigla)
 VALUES ('{}', '{}', '{}', '{}', {}, {}, '{}');
 """
@@ -20,7 +20,7 @@ def create_insert_string(row):
     idSituacao = f"(SELECT idSituacao FROM SITUACAO WHERE descricaoSituacao = '{row[8]}')"
     sigla = row[9]
 
-    insert_sql = INSERT_CANDIDATE.format(
+    insert_sql = INSERT_CANDIDATURA.format(
         cpf, ano, unidadeEleitoral, unidadeFederativa, idCargo, idSituacao,
         sigla
     )

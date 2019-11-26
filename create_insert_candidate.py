@@ -10,8 +10,8 @@ VALUES ('{}', '{}', '{}', '{}', {});
 
 def create_insert_string(row):
     dt = str(row[6])
-    dt = f'{dt[-4:]}-{dt[2:4]}-{dt[0:2]}'
-    if len(dt) != 10:
+    dt = f"'{dt[-4:]}-{dt[2:4]}-{dt[0:2]}'"
+    if len(dt) != 12:
         dt = "'NULL'"
 
     nome_urna = str(row[3]).replace("'", "")
