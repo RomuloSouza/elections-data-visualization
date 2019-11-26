@@ -1,6 +1,7 @@
 import pandas as pd
+import bisect
 
-MAX_CANDIDATES = 20000
+MAX_CANDIDATES = 150000
 
 INSERT_CANDIDATE = """
 INSERT INTO CANDIDATO (cpf, nomeUrna, sexo, nomeCandidato, dtNascimento)
@@ -24,8 +25,25 @@ def create_insert_string(row):
         nome_candidato,
         dt
     )
-    
+
     return insert_sql
+
+
+def binary_search(array, target):
+    lower = 0
+    upper = len(array)
+    while lower < upper:
+        x = lower + (upper - lower) // 2
+        val = array[x]
+        if target == val:
+            return True
+        elif target > val:
+            if lower == x:
+                break
+            lower = x
+        elif target < val:
+            upper = x
+    return False
 
 
 def create_cpfs_file(cpfs):
@@ -56,14 +74,14 @@ if __name__ == '__main__':
     for row in data.itertuples():
         if counter < MAX_CANDIDATES:
             cpf = row[2]
-            cpfs.append(cpf)
+            if not binary_search(cpfs, cpf):
+                bisect.insort(cpfs, cpf)
 
+            counter += 1
             line = create_insert_string(row)
             lines.append(line)
         else:
             break
-
-        counter += 1
 
     print('tamanho = ', counter)
     create_cpfs_file(set(cpfs))

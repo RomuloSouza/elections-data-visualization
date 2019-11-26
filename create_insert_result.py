@@ -7,7 +7,7 @@ INSERT INTO RESULTADO (descricaoResultado) VALUES ('{}');
 
 def create_insert_string(situacao):
     insert_sql = INSERT_RESULT.format(situacao)
-    
+
     return insert_sql
 
 
@@ -28,7 +28,7 @@ if __name__ == '__main__':
     results = []
     for row in data.itertuples():
         results.append(row[14])
-    
+
     lines = []
     for result in set(results):
         line = create_insert_string(result)

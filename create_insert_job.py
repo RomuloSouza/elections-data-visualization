@@ -7,7 +7,7 @@ INSERT INTO CARGO (descricaoCargo) VALUES ('{}');
 
 def create_insert_string(job):
     insert_sql = INSERT_JOB.format(job)
-    
+
     return insert_sql
 
 
@@ -28,7 +28,7 @@ if __name__ == '__main__':
     jobs = []
     for row in data.itertuples():
         jobs.append(row[7])
-    
+
     lines = []
     for job in set(jobs):
         line = create_insert_string(job)

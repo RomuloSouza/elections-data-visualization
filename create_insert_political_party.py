@@ -14,7 +14,7 @@ def create_insert_string(row):
         sigla_partido,
         nome_partido
     )
-    
+
     return insert_sql
 
 

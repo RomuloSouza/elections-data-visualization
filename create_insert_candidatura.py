@@ -1,30 +1,34 @@
 import pandas as pd
 
 INSERT_CANDIDATURA = """
-INSERT INTO CANDIDATURA (cpf, ano, unidadeEleitoral, unidadeFederativa, idCargo, idSituacao, sigla)
+INSERT INTO CANDIDATURA (cpf, ano, unidadeEleitoral, unidadeFederativa,
+                         idCargo, idSituacao, sigla)
 VALUES ('{}', '{}', '{}', '{}', {}, {}, '{}');
 """
 
-# INSERT INTO CANDIDATURA (cpf, ano, unidadeEleitoral, unidadeFederativa, idCargo, idSituacao, sigla)
-# VALUES ('7857136204', 2000, 'ACRELANDIA', 'AC', 
+SELECT_CARGO = """
+SELECT idCargo FROM CARGO WHERE descricaoCargo = '{}'
+"""
 
-# (select idCargo from CARGO where descricaoCargo = 'PREFEITO'), 
-# (select idSituacao from SITUACAO where descricaoSituacao = 'alo'), 'PFL');
+SELECT_SITUACAO = """
+SELECT idSituacao FROM SITUACAO WHERE descricaoSituacao = '{}'
+"""
+
 
 def create_insert_string(row):
     cpf = row[2]
     ano = row[11]
     unidadeEleitoral = row[12]
     unidadeFederativa = row[13]
-    idCargo = f"(SELECT idCargo FROM CARGO WHERE descricaoCargo = '{row[7]}')"
-    idSituacao = f"(SELECT idSituacao FROM SITUACAO WHERE descricaoSituacao = '{row[8]}')"
+    idCargo = f"( {SELECT_CARGO.format(row[7])} )"
+    idSituacao = f"( {SELECT_SITUACAO.format(row[8])} )"
     sigla = row[9]
 
     insert_sql = INSERT_CANDIDATURA.format(
         cpf, ano, unidadeEleitoral, unidadeFederativa, idCargo, idSituacao,
         sigla
     )
-    
+
     return insert_sql
 
 
@@ -35,6 +39,7 @@ def add_lines_to_file(lines):
         f.write(line)
 
     f.close()
+
 
 def read_cpfs():
     f = open('cpfs.txt', 'r')
@@ -58,7 +63,6 @@ def binary_search(array, target):
         elif target < val:
             upper = x
     return False
-
 
 
 if __name__ == '__main__':

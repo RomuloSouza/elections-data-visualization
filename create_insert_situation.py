@@ -7,7 +7,7 @@ INSERT INTO SITUACAO (descricaoSituacao) VALUES ('{}');
 
 def create_insert_string(situacao):
     insert_sql = INSERT_SITUATION.format(situacao)
-    
+
     return insert_sql
 
 
@@ -28,7 +28,7 @@ if __name__ == '__main__':
     situations = []
     for row in data.itertuples():
         situations.append(row[8])
-    
+
     lines = []
     for situation in set(situations):
         line = create_insert_string(situation)
