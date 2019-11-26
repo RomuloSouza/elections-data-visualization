@@ -36,18 +36,45 @@ def add_lines_to_file(lines):
 
     f.close()
 
+def read_cpfs():
+    f = open('cpfs.txt', 'r')
+    f = f.read().split('\n')
+
+    return f
+
+
+def binary_search(array, target):
+    lower = 0
+    upper = len(array)
+    while lower < upper:
+        x = lower + (upper - lower) // 2
+        val = array[x]
+        if target == val:
+            return True
+        elif target > val:
+            if lower == x:
+                break
+            lower = x
+        elif target < val:
+            upper = x
+    return False
+
+
 
 if __name__ == '__main__':
     filename = 'new_candidates.csv'
+    cpfs = read_cpfs()
+    cpfs.sort()
 
     data = pd.read_csv(filename, parse_dates=['dtNascimento'])
     counter = 0
     lines = []
     for row in data.itertuples():
-        line = create_insert_string(row)
-        lines.append(line)
+        if binary_search(cpfs, str(row[2])):
+            line = create_insert_string(row)
+            lines.append(line)
 
-        counter += 1
+            counter += 1
 
     print('tamanho = ', counter)
     add_lines_to_file(lines)
