@@ -29,6 +29,9 @@ INSERT INTO CANDIDATURA
 INSERT INTO CANDIDATURA (cpf, ano, unidadeEleitoral, unidadeFederativa, idCargo, idSituacao, sigla)
 VALUES ('7857136204', 2000, 'ACRELANDIA', 'AC', 1, 1, 'PFL');
 
+INSERT INTO CANDIDATURA (cpf, ano, unidadeEleitoral, unidadeFederativa, idCargo, idSituacao, sigla)
+VALUES ('7857136204', 2000, 'ACRELANDIA', 'AC', (select idCargo from CARGO where descricaoCargo = 'PREFEITO'), 1, 'PFL');
+
 /*
 INSERT INTO TIPOPATRIMONIO
 */

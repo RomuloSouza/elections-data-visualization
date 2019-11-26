@@ -28,6 +28,15 @@ def create_insert_string(row):
     return insert_sql
 
 
+def create_cpfs_file(cpfs):
+    f = open('cpfs.txt', 'w+')
+
+    for cpf in cpfs:
+        f.write(str(cpf)+'\n')
+
+    f.close()
+
+
 def add_lines_to_file(lines):
     f = open('./sql_scripts/popula_candidatos.sql', 'w+')
     f.write('USE eleicoes;\n')
@@ -43,8 +52,12 @@ if __name__ == '__main__':
     data = pd.read_csv(filename, parse_dates=['dtNascimento'])
     counter = 0
     lines = []
+    cpfs = []
     for row in data.itertuples():
         if counter < MAX_CANDIDATES:
+            cpf = row[2]
+            cpfs.append(cpf)
+
             line = create_insert_string(row)
             lines.append(line)
         else:
@@ -53,4 +66,5 @@ if __name__ == '__main__':
         counter += 1
 
     print('tamanho = ', counter)
+    create_cpfs_file(set(cpfs))
     add_lines_to_file(lines)
