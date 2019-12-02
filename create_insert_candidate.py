@@ -13,7 +13,7 @@ def create_insert_string(row):
     dt = str(row[6])
     dt = f"'{dt[-4:]}-{dt[2:4]}-{dt[0:2]}'"
     if len(dt) != 12:
-        dt = "'NULL'"
+        dt = "NULL"
 
     nome_urna = str(row[3]).replace("'", "")
     nome_candidato = str(row[5]).replace("'", "")
@@ -72,16 +72,16 @@ if __name__ == '__main__':
     lines = []
     cpfs = []
     for row in data.itertuples():
-        if counter < MAX_CANDIDATES:
-            cpf = row[2]
-            if not binary_search(cpfs, cpf):
-                bisect.insort(cpfs, cpf)
+        # if counter < MAX_CANDIDATES:
+        cpf = row[2]
+        if not binary_search(cpfs, cpf):
+            bisect.insort(cpfs, cpf)
 
-            counter += 1
-            line = create_insert_string(row)
-            lines.append(line)
-        else:
-            break
+        counter += 1
+        line = create_insert_string(row)
+        lines.append(line)
+        # else:
+        #     break
 
     print('tamanho = ', counter)
     create_cpfs_file(set(cpfs))
