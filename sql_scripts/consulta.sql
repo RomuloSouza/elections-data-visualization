@@ -27,9 +27,11 @@ GROUP BY c.sigla ORDER BY TotalCandidatos DESC;
 
 
 /*
-Consulta responsável por mostrar o número total de candidatos que foram
-eleitos por partido
+Essa view é responsável por mostrar o número total de candidatos que foram
+eleitos por partido. Assim, pode-se fazer análises dos do resultado de cada
+partido nas eleições
 */
+CREATE VIEW ELEITOS_V AS
 SELECT c.sigla, count(e.cpf) AS eleitos
 FROM PARTIDO p, CANDIDATURA c, ELEICAO e, RESULTADO r
 WHERE p.sigla = c.sigla AND c.cpf = e.cpf AND c.ano = e.ano AND

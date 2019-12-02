@@ -36,13 +36,13 @@ VALUES ('7857136204', 2000, 'ACRELANDIA', 'AC', (select idCargo from CARGO where
 INSERT INTO TIPOPATRIMONIO
 */
 
-INSERT INTO TIPOPATRIMONIO (descricaoTipoPatrimonio) VALUES ('APARTAMENTO');
+-- INSERT INTO TIPOPATRIMONIO (descricaoTipoPatrimonio) VALUES ('APARTAMENTO');
 
 /*
 INSERT INTO PATRIMONIO
 */
-INSERT INTO PATRIMONIO (valor, detalhe, idTipoPatrimonio, ano, cpf)
-VALUES (1000, 'Varios aps', 1, 2000, '7857136204');
+-- INSERT INTO PATRIMONIO (valor, detalhe, idTipoPatrimonio, ano, cpf)
+-- VALUES (1000, 'Varios aps', 1, 2000, '7857136204');
 
 /*
 INSERT INTO RESULTADO
