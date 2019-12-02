@@ -54,3 +54,7 @@ INSERT INTO ELEICAO
 */
 INSERT INTO ELEICAO (turno, idResultado, ano, cpf)
 VALUES (1, 1, 2000, '7857136204');
+INSERT INTO ELEICAO (turno, idResultado, ano, cpf)
+VALUES (1, 1, 2000, '9587098234');
+INSERT INTO ELEICAO (turno, idResultado, ano, cpf)
+VALUES (1, 1, 2000, '9637958215');
