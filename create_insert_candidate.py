@@ -1,7 +1,7 @@
 import pandas as pd
 import bisect
 
-MAX_CANDIDATES = 150000
+MAX_CANDIDATES = 1000
 
 INSERT_CANDIDATE = """
 INSERT INTO CANDIDATO (cpf, nomeUrna, sexo, nomeCandidato, dtNascimento)
