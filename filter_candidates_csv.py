@@ -40,6 +40,8 @@ def validate_candidate(candidate):
         return False
     elif int(candidate['numeroSequencial']) <= 0:
         return False
+    elif int(candidate['ano']) != 2004:
+        return False
     else:
         for i in existing_fields:
             if not candidate[i]:
