@@ -1,4 +1,19 @@
-/* fisico eleições */
+--  ----------------------- eleicoes --------------------------
+--                                                                  
+--                    SCRIPT DE CRIAÇÃO (DDL)                           
+--                                                                  
+-- Data Criacao ..........: 24/11/2019                             
+-- Autor(es) .............:
+--     Rômulo Souza - 15/0147601
+--     Vinícius Lima - 15/0151331
+-- Banco de Dados ........: MySQL                                   
+-- Base de Dados(nome) ...: eleicoes                                                                                      
+--                                                                  
+-- PROJETO => 1 Base de Dados                                       
+--         => 7 Tabelas                                           
+--                                                                  
+-- -----------------------------------------------------------------
+
 
 CREATE DATABASE IF NOT EXISTS eleicoes;
 
@@ -37,41 +52,19 @@ CREATE TABLE PARTIDO (
 
 CREATE TABLE CANDIDATURA (
     cpf VARCHAR(15) NOT NULL,
-    ano INT NOT NULL, -- TODO change DATE to INT in diagrams
-    -- numeroCandidato INT NOT NULL,
+    ano INT NOT NULL,
     unidadeEleitoral VARCHAR(100) NOT NULL,
     unidadeFederativa CHAR(2) NOT NULL,
     idCargo INT NOT NULL,
     idSituacao INT NOT NULL,
     sigla VARCHAR(15) NOT NULL,
 
-    -- TODO conferir aqui
     CONSTRAINT CANDIDATURA_CANDIDATO_FK FOREIGN KEY (cpf) REFERENCES CANDIDATO (cpf),
     CONSTRAINT CANDIDATURA_PK PRIMARY KEY (ano, cpf),
     CONSTRAINT CANDIDATURA_CARGO_FK FOREIGN KEY (idCargo) REFERENCES CARGO (idCargo),
     CONSTRAINT CANDIDATURA_SITUACAO_FK FOREIGN KEY (idSituacao) REFERENCES SITUACAO (idSituacao),
     CONSTRAINT CANDIDATURA_SIGLA_FK FOREIGN KEY (sigla) REFERENCES PARTIDO (sigla)
 )Engine = InnoDB DEFAULT CHARSET = utf8;
-
-CREATE TABLE TIPOPATRIMONIO (
-    idTipoPatrimonio INT NOT NULL AUTO_INCREMENT,
-    descricaoTipoPatrimonio VARCHAR(100) NOT NULL,
-
-    CONSTRAINT TIPOPATRIMONIO_PK PRIMARY KEY (idTipoPatrimonio)
-)Engine = InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET = utf8;
-
-CREATE TABLE PATRIMONIO (
-    idPatrimonio INT NOT NULL AUTO_INCREMENT,
-    valor FLOAT NOT NULL,
-    detalhe VARCHAR(300),
-    idTipoPatrimonio INT NOT NULL,
-    ano INT NOT NULL,
-    cpf VARCHAR(15) NOT NULL,
-
-    CONSTRAINT PATRIMONIO_PK PRIMARY KEY (idPatrimonio),
-    CONSTRAINT PATRIMONIO_TIPOPATRIMONIO_FK FOREIGN KEY (idTipoPatrimonio) REFERENCES TIPOPATRIMONIO (idTipoPatrimonio),
-    CONSTRAINT PATRIMONIO_CANDIDATURA_FK FOREIGN KEY (ano, cpf) REFERENCES CANDIDATURA (ano, cpf)
-)Engine = InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET = utf8;
 
 CREATE TABLE RESULTADO (
     idResultado INT NOT NULL AUTO_INCREMENT,
